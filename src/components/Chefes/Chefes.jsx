@@ -12,8 +12,8 @@ const Chefes = () => {
         .catch(error => console.log(error))
     } ,[])
     return (
-        <Container>
-            <h2>All Chefes Here : {chefes.length}</h2>
+        <Container className='mt-5'>
+            <h2 className='text-center'>All Chefes Here : {chefes.length}</h2>
             <div className='grid row row-cols-2 '>
             {
                 chefes.map(chef => <ChefCard
