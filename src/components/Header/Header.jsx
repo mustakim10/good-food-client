@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Container, Nav, NavDropdown, Navbar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 
 const Header = () => {
@@ -18,7 +19,7 @@ const Header = () => {
           <Nav>
             <Nav.Link href="#deets">Profile</Nav.Link>
             <Nav.Link eventKey={2} href="#memes">
-            <Button variant="secondary">Login</Button>
+            <Link to="/login"><Button variant="secondary">Login</Button></Link>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
