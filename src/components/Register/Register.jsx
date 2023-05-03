@@ -7,6 +7,7 @@ const Register = () => {
 
    const {createUser} = useContext(AuthContext);
    const [accept,setAccept] = useState(false);
+   const [error, setError] = useState('');
 
    const handleRegister = event => {
     event.preventDefault();
@@ -21,9 +22,11 @@ const Register = () => {
     .then(result => {
       const createdUser = result.user;
       console.log(createdUser);
+      setError('');
     })
     .catch(error => {
       console.log(error);
+      setError(error.message);
     })
     form.reset()
    }
@@ -67,11 +70,12 @@ const Register = () => {
     Register
   </Button>
   <br />
-  <Form.Text className="text-secondary">
+  <Form.Text className="text-secondary ">
      Already Have an Account ? <Link to='/login'>Login</Link>
     </Form.Text>
 
 </Form>
+<p className='text-danger'>{error}</p>
     </Container>
     );
 };

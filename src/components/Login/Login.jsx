@@ -1,14 +1,30 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Providers/AuthProviders';
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import app from '../../firebase/firebase.config';
 
 const Login = () => {
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider()
   const {signIn} = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const [error, setError] = useState('');
   console.log(location);
   const from = location.state?.from?.pathname || '/';
+
+const handleGoogleSignIn = () => {
+signInWithPopup(auth, provider)
+.then(result => {
+  const user = result.user;
+  navigate(from, {replace: true});
+})
+.catch(error => {
+  console.log(error)
+})
+}
 
   const handleLogin = event => {
     event.preventDefault();
@@ -21,10 +37,12 @@ const Login = () => {
     .then(result => {
       const loggedUser = result.user ;
       console.log(loggedUser);
+      setError('')
       navigate(from, {replace: true});
     })
     .catch(error => {
       console.log(error)
+      setError(error.message)
     })
     form.reset()
   }
@@ -53,10 +71,11 @@ const Login = () => {
           to='/register'>Register</Link>
         </Form.Text>
 
-        <Button className='m-4' variant="outline-secondary">Google Sign-in</Button>
+        <Button onClick={handleGoogleSignIn} className='m-4' variant="outline-secondary">Google Sign-in</Button>
         
         <Button variant="outline-secondary">GitHub Sign-in</Button>
     </Form>
+    <p className='text-danger'>{error}</p>
         </Container>
     );
 };
