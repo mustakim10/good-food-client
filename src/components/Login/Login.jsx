@@ -52,6 +52,10 @@ const Login = () => {
          Don't Have an Account ? <Link
           to='/register'>Register</Link>
         </Form.Text>
+
+        <Button className='m-4' variant="outline-secondary">Google Sign-in</Button>
+        
+        <Button variant="outline-secondary">GitHub Sign-in</Button>
     </Form>
         </Container>
     );
