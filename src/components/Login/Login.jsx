@@ -2,12 +2,13 @@ import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Providers/AuthProviders';
-import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
 
 const Login = () => {
   const auth = getAuth(app);
-  const provider = new GoogleAuthProvider()
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
   const {signIn} = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -16,7 +17,7 @@ const Login = () => {
   const from = location.state?.from?.pathname || '/';
 
 const handleGoogleSignIn = () => {
-signInWithPopup(auth, provider)
+signInWithPopup(auth, googleProvider)
 .then(result => {
   const user = result.user;
   navigate(from, {replace: true});
@@ -24,6 +25,17 @@ signInWithPopup(auth, provider)
 .catch(error => {
   console.log(error)
 })
+}
+
+const handleGithubSignIn = () => {
+  signInWithPopup(auth, githubProvider)
+  .then(result => {
+    const loggedUser = result.user ;
+    navigate(from, {replace: true});
+  })
+  .catch(error =>{
+    console.log(error)
+  })
 }
 
   const handleLogin = event => {
@@ -73,7 +85,7 @@ signInWithPopup(auth, provider)
 
         <Button onClick={handleGoogleSignIn} className='m-4' variant="outline-secondary">Google Sign-in</Button>
         
-        <Button variant="outline-secondary">GitHub Sign-in</Button>
+        <Button onClick={handleGithubSignIn} variant="outline-secondary">GitHub Sign-in</Button>
     </Form>
     <p className='text-danger'>{error}</p>
         </Container>
