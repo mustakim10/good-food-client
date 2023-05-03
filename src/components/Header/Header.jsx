@@ -7,7 +7,14 @@ import { AuthContext } from '../Providers/AuthProviders';
 
 
 const Header = () => {
-  const {user} = useContext(AuthContext);
+  const {user, logOut} = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+    .then()
+    .catch(error => console.log(error));
+
+  }
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -16,8 +23,8 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mx-auto">
-            <Nav.Link href="#features">Home</Nav.Link>
-            <Nav.Link href="#pricing">Blog</Nav.Link>
+            <Link className='text-decoration-none text-secondary me-5 ' to="/">Home</Link>
+            <Link className='text-decoration-none text-secondary ' to="/blog">Blog</Link>
             
           </Nav>
           <Nav>
@@ -26,7 +33,7 @@ const Header = () => {
            }
             
             {user ?
-             <Button variant="secondary">Logout</Button> :
+             <Button onClick={handleLogOut} variant="secondary">Logout</Button> :
               <Link to="/login">
               <Button variant="secondary">Login</Button>
               </Link>}
