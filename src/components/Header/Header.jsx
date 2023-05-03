@@ -23,13 +23,13 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mx-auto">
-            <Link className='text-decoration-none text-secondary me-5 ' to="/">Home</Link>
-            <Link className='text-decoration-none text-secondary ' to="/blog">Blog</Link>
+            <Link className='text-decoration-none text-secondary me-5 fw-bold' to="/">Home</Link>
+            <Link className='text-decoration-none text-secondary fw-bold ' to="/blog">Blog</Link>
             
           </Nav>
           <Nav>
            {user && 
-              <FaUserCircle style={{fontSize: '2rem'}}></FaUserCircle>
+              <FaUserCircle className='me-2' style={{fontSize: '2rem'}}></FaUserCircle>
            }
             
             {user ?

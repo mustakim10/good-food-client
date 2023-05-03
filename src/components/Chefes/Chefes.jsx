@@ -13,7 +13,7 @@ const Chefes = () => {
     } ,[])
     return (
         <Container className='mt-5'>
-            <h2 className='text-center'>All Chefes Here : {chefes.length}</h2>
+            <h2 className='text-center fw-bold mt-4 text-secondary'>All Chefes Here </h2>
             <div className='grid row row-cols-2 '>
             {
                 chefes.map(chef => <ChefCard
