@@ -3,6 +3,7 @@ import { Button, Container, Nav,  Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import { AuthContext } from '../Providers/AuthProviders';
+import ActiveLink from '../ActiveLink/ActiveLink';
 
 
 
@@ -19,11 +20,11 @@ const Header = () => {
         <div>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
       <Container>
-        
+        <h1 className='text-secondary bold'><strong>Good Food</strong></h1>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mx-auto">
-            <Link className='text-decoration-none text-secondary me-5 fw-bold' to="/">Home</Link>
+            <Link className='text-decoration-none text-secondary me-5 fw-bold'  to="/">Home</Link>
             <Link className='text-decoration-none text-secondary fw-bold ' to="/blog">Blog</Link>
             
           </Nav>

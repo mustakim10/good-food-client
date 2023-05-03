@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+
 import { Container } from 'react-bootstrap';
-import { FaHeart } from 'react-icons/fa';
+
 import { useLoaderData } from 'react-router-dom';
 
 import Recipe from '../Recipe/Recipe';
+
 
 const ChefDetails = () => {
     const details = useLoaderData();
@@ -24,7 +25,7 @@ const ChefDetails = () => {
             <p><strong>Food :</strong> {food}</p>
             <p><strong>Likes :</strong> {likes} peoples</p>
             <h2 className='text-center fw-bold my-4'>Recipe</h2>
-           <div className='d-flex p-2 m-2 gap-5'>
+           <div className='d-md-flex  p-2 m-2 gap-5'>
            {
                 recipes.map(r=> <Recipe
                 key={r.name}

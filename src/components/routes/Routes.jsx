@@ -6,20 +6,23 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import Blog from "../Blog/Blog";
+import Error from "../Error/Error";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <Error></Error>,
         children: [
             {
                 path: '/',
                 element: <Home></Home>
+                
             },
             {
                 path: '/details/:id',
                 element: <PrivateRoute><ChefDetails></ChefDetails></PrivateRoute>,
-                loader: ({params})=>fetch(`http://localhost:5000/details/${params.id}`)
+                loader: ({params})=>fetch(`https://good-food-server-mustakim10.vercel.app/details/${params.id}`)
                 
             
             },
