@@ -25,7 +25,7 @@ const router = createBrowserRouter([
                 loader: ({params})=>fetch(`https://good-food-server-mustakim10.vercel.app/details/${params.id}`)
                 
             
-            },
+            }, 
             {
                 path: '/login',
                 element: <Login></Login>

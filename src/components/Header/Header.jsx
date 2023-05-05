@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Button, Container, Nav,  Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import { AuthContext } from '../Providers/AuthProviders';
 import ActiveLink from '../ActiveLink/ActiveLink';
@@ -16,6 +16,12 @@ const Header = () => {
     .catch(error => console.log(error));
 
   }
+
+  const navLinkStyles = ({isActive})=> {
+  return {
+    fontWeight: isActive ? "bold" : "normal"
+  }
+ }
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -24,8 +30,8 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mx-auto">
-            <Link className='text-decoration-none text-secondary me-5 fw-bold'  to="/">Home</Link>
-            <Link className='text-decoration-none text-secondary fw-bold ' to="/blog">Blog</Link>
+            <NavLink style={navLinkStyles} className='text-decoration-none text-secondary me-5 '  to="/">Home</NavLink>
+            <NavLink style={navLinkStyles}  className='text-decoration-none text-secondary  ' to="/blog">Blog</NavLink>
             
           </Nav>
           <Nav>
